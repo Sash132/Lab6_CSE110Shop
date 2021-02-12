@@ -38,11 +38,13 @@ class ProductItem extends HTMLElement {
         cartSize.textContent = parseInt(cartSize.textContent) + 1;
         button.textContent = 'Remove from Cart';
         cart.push(id);
+        alert('Added to Cart!');
       }
       else {
         cartSize.textContent = parseInt(cartSize.textContent) - 1;
         button.textContent = 'Add to Cart';
         cart.splice(cart.indexOf(id), 1);
+        alert('Removed from Cart!');
       }
       localStorage.setItem('cartSize', JSON.stringify(cartSize.textContent));
       localStorage.setItem('cart', JSON.stringify(cart));
