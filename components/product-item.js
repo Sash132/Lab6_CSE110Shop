@@ -8,6 +8,7 @@ class ProductItem extends HTMLElement {
     const listwr = document.createElement('li');
     listwr.setAttribute('class', 'product');
     
+    //sets attributes for src, alt, width, title, and price
     const imageAcc = document.createElement('img');
     const pTitle = document.createElement('p');
     const pPrice = document.createElement('p');
@@ -22,6 +23,7 @@ class ProductItem extends HTMLElement {
     listwr.appendChild(pTitle);
     listwr.appendChild(pPrice);
     
+    //creates button and sets it to correct phrase
     const button = document.createElement('button');
     button.textContent = 'Add to Cart';
     if(checked) {
@@ -29,6 +31,12 @@ class ProductItem extends HTMLElement {
     }
     listwr.appendChild(button);
     
+    /* event listener that will take action if button is clicked
+    * - updates the size of the cart and saves it locally in case of page refresh
+    * - alternatingly swaps phrases for the button
+    * - pushes/removes id's from a list that indicates which items have been added to cart in case of page refresh
+    * - sends alert whenever an item has been added or removed from the cart.
+    **/
     button.addEventListener("click", buttonChange);
     function buttonChange() {
       let cartSize = document.getElementById('cart-count');
@@ -51,6 +59,7 @@ class ProductItem extends HTMLElement {
       localStorage.setItem('cart', JSON.stringify(cart));
     }
     
+    //sets up the CSS for the specific product
     this.shadowRoot.innerHTML = `
     <style>
         .price {
