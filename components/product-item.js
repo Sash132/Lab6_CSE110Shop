@@ -1,9 +1,53 @@
 // product-item.js
 
 class ProductItem extends HTMLElement {
-  constructor(image, title, price) {
+  constructor(image, title, price, checked, id) {
     super();
-    this.attachShadow({mode: 'open'});
+    this.attachShadow({mode: 'open'});  
+    
+    const listwr = document.createElement('li');
+    listwr.setAttribute('class', 'product');
+    
+    const imageAcc = document.createElement('img');
+    const pTitle = document.createElement('p');
+    const pPrice = document.createElement('p');
+    imageAcc.setAttribute('src', image);
+    imageAcc.setAttribute('alt', title);
+    imageAcc.setAttribute('width', 200);
+    pTitle.textContent = title;
+    pPrice.textContent = "$" + price;
+    pTitle.setAttribute('class', 'title');
+    pPrice.setAttribute('class', 'price');
+    listwr.appendChild(imageAcc);
+    listwr.appendChild(pTitle);
+    listwr.appendChild(pPrice);
+    
+    const button = document.createElement('button');
+    button.textContent = 'Add to Cart';
+    if(checked) {
+      button.textContent = 'Remove from Cart';
+    }
+    listwr.appendChild(button);
+    
+    button.addEventListener("click", buttonChange);
+    
+    function buttonChange() {
+      let cartSize = JSON.parse(localStorage.getItem('cartSize'));
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      if(button.textContent == 'Add to Cart') {
+        cartSize.textContent = parseInt(cartSize.textContent) + 1;
+        button.textContent = 'Remove from Cart';
+        cart.push(id);
+      }
+      else {
+        cartSize.textContent = parseInt(cartSize.textContent) - 1;
+        button.textContent = 'Add to Cart';
+        cart.splice(cart.indexOf(id), 1);
+      }
+      localStorage.setItem('cartSize', JSON.stringify(cartSize));
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    
     this.shadowRoot.innerHTML = `
     <style>
         .price {
@@ -70,28 +114,6 @@ class ProductItem extends HTMLElement {
         text-overflow: unset;
       }
     </style>`;
-      
-    
-    const listwr = document.createElement('li');
-    listwr.setAttribute('class', 'product');
-    
-    const imageAcc = document.createElement('img');
-    const pTitle = document.createElement('p');
-    const pPrice = document.createElement('p');
-    imageAcc.setAttribute('src', image);
-    imageAcc.setAttribute('alt', title);
-    imageAcc.setAttribute('width', 200);
-    pTitle.textContent = title;
-    pPrice.textContent = "$" + price;
-    pTitle.setAttribute('class', 'title');
-    pPrice.setAttribute('class', 'price');
-    listwr.appendChild(imageAcc);
-    listwr.appendChild(pTitle);
-    listwr.appendChild(pPrice);
-    
-    const button = document.createElement('button');
-    button.textContent = 'Add to Cart';
-    listwr.appendChild(button);
     
     this.shadowRoot.append(listwr);
   }
