@@ -1,1 +1,1 @@
-https://sash132.github.io/Lab6_CSE110Shop/
+GitHub Pages Link: https://sash132.github.io/Lab6_CSE110Shop/
