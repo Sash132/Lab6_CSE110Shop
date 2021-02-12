@@ -32,7 +32,7 @@ class ProductItem extends HTMLElement {
     button.addEventListener("click", buttonChange);
     
     function buttonChange() {
-      let cartSize = JSON.parse(localStorage.getItem('cartSize'));
+      let cartSize = document.getElementById('cart-count');
       let cart = JSON.parse(localStorage.getItem('cart'));
       if(button.textContent == 'Add to Cart') {
         cartSize.textContent = parseInt(cartSize.textContent) + 1;
