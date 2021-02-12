@@ -9,15 +9,17 @@ window.addEventListener('DOMContentLoaded', () => {
   
   let productsJSON = JSON.parse(localStorage.getItem('products'));
   let productsList = document.getElementById('product-list');
-  let cartSize = document.getElementById('cart-count');
-  cartSize.textContent = cart.length;
-  localStorage.setItem('cartSize', JSON.stringify(cartSize));
-  
+
   if(localStorage.getItem('cart') == null) {
     let cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
   }
   cart = JSON.parse(localStorage.getItem('cart'));
+  
+  let cartSize = document.getElementById('cart-count');
+  cartSize.textContent = cart.length;
+  localStorage.setItem('cartSize', JSON.stringify(cartSize));
+  
   
   for(var prod in productsJSON) {
     let inclusion = cart.includes(productsJSON[prod].id.toString());
