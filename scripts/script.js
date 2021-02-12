@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   cart = JSON.parse(localStorage.getItem('cart'));
   
   for(var prod in productsJSON) {
-    let inclusion = cart.includes(productsJSON[prod].id.toString());
+    let inclusion = cart.includes(productsJSON[prod].id);
     let currProduct = new ProductItem(productsJSON[prod].image, productsJSON[prod].title, productsJSON[prod].price, inclusion, productsJSON[prod].id);
     productsList.appendChild(currProduct);
   }
