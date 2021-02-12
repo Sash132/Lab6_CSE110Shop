@@ -15,8 +15,6 @@ class ProductItem extends HTMLElement {
     imageAcc.setAttribute('alt', title);
     pTitle.textContent = title;
     pPrice.textContent = price;
-    pTitle.setAttribute('class', 'title');
-    pPrice.setAttribute('class', 'price');
     listwr.appendChild(imageAcc);
     listwr.appendChild(pTitle);
     listwr.appendChild(pPrice);
