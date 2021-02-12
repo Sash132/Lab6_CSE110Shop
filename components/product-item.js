@@ -89,7 +89,8 @@ class ProductItem extends HTMLElement {
         text-overflow: unset;
       }`;
     
-    this.shadowRoot.appendChild(style, listwr);
+    this.shadowRoot.appendChild(style);
+    this.shadowRoot.appendChild(listwr);
   }
 }
 
