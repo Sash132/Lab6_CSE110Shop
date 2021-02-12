@@ -88,6 +88,7 @@ class ProductItem extends HTMLElement {
         overflow: auto;
         text-overflow: unset;
       }`;
+    listwr.appendChild(style);
     
     this.shadowRoot.append(style, listwr);
   }
