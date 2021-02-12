@@ -3,8 +3,8 @@
 class ProductItem extends HTMLElement {
   constructor(image, title, price) {
     super();
-    this.root = this.attachShadow({mode: 'open'});
-    this.root.innerHTML = `
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `
     <style>
         .price {
         color: green;
@@ -93,7 +93,7 @@ class ProductItem extends HTMLElement {
     button.textContent = 'Add to Cart';
     listwr.appendChild(button);
     
-    this.root.append(listwr);
+    this.shadowRoot.append(listwr);
   }
 }
 
