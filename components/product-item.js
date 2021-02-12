@@ -44,7 +44,7 @@ class ProductItem extends HTMLElement {
         button.textContent = 'Add to Cart';
         cart.splice(cart.indexOf(id), 1);
       }
-      localStorage.setItem('cartSize', JSON.stringify(cartSize));
+      localStorage.setItem('cartSize', JSON.stringify(cartSize.textContent));
       localStorage.setItem('cart', JSON.stringify(cart));
     }
     
