@@ -7,11 +7,21 @@ window.addEventListener('DOMContentLoaded', () => {
       .then(data => localStorage.setItem('products', JSON.stringify(data)));
   }
   
-  productsJSON = JSON.parse(localStorage.getItem('products'));
-  productsList = document.getElementById('product-list');
+  let productsJSON = JSON.parse(localStorage.getItem('products'));
+  let productsList = document.getElementById('product-list');
+  let cartSize = document.getElementById('cart-count');
+  cartSize.textContent = cart.length;
+  localStorage.setItem('cartSize', JSON.stringify(cartSize));
+  
+  if(localStorage.getItem('cart') == null) {
+    let cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+  cart = JSON.parse(localStorage.getItem('cart'));
   
   for(var prod in productsJSON) {
-    currProduct = new ProductItem(productsJSON[prod].image, productsJSON[prod].title, productsJSON[prod].price);
+    let inclusion = cart.includes(productsJSON[prod].id.toString());
+    let currProduct = new ProductItem(productsJSON[prod].image, productsJSON[prod].title, productsJSON[prod].price, inclusion, productsJSON[prod].id);
     productsList.appendChild(currProduct);
   }
   
