@@ -2,13 +2,12 @@
 window.addEventListener('DOMContentLoaded', () => {
   
   if(localStorage.getItem('products') === null) {
-    fetch('http://example.com/movies.json')
+    fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
       .then(data => localStorage.setItem('products', JSON.stringify(data)));
   }
   
-  productsStr = localStorage.getItem('products');
-  productsJSON = JSON.parse(productsStr);
+  productsJSON = JSON.parse(localStorage.getItem('products'));
   productsList = document.getElementByID('product-list');
   
   for(var prod in productsJSON) {
