@@ -30,7 +30,6 @@ class ProductItem extends HTMLElement {
     listwr.appendChild(button);
     
     button.addEventListener("click", buttonChange);
-    
     function buttonChange() {
       let cartSize = document.getElementById('cart-count');
       let cart = JSON.parse(localStorage.getItem('cart'));
@@ -41,7 +40,9 @@ class ProductItem extends HTMLElement {
         alert('Added to Cart!');
       }
       else {
-        cartSize.textContent = parseInt(cartSize.textContent) - 1;
+        if(parseInt(cartSize.textContent) != 0) {
+          cartSize.textContent = parseInt(cartSize.textContent) - 1;
+        }
         button.textContent = 'Add to Cart';
         cart.splice(cart.indexOf(id), 1);
         alert('Removed from Cart!');
