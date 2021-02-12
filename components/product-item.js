@@ -3,29 +3,10 @@
 class ProductItem extends HTMLElement {
   constructor(image, title, price) {
     super();
-    this.attachShadow({mode: 'open'});
-    
-    const listwr = document.createElement('li');
-    listwr.setAttribute('class', 'product');
-    
-    const imageAcc = document.createElement('img');
-    const pTitle = document.createElement('p');
-    const pPrice = document.createElement('p');
-    imageAcc.setAttribute('src', image);
-    imageAcc.setAttribute('alt', title);
-    pTitle.textContent = title;
-    pPrice.textContent = price;
-    listwr.appendChild(imageAcc);
-    listwr.appendChild(pTitle);
-    listwr.appendChild(pPrice);
-    
-    const button = document.createElement('button');
-    button.textContent = 'Add to Cart';
-    listwr.appendChild(button);
-    
-    const style = document.createElement('style');
-    style.textContent = `
-      .price {
+    this.root = this.attachShadow({mode: 'open'});
+    this.root.innerHTML = `
+    <style>
+        .price {
         color: green;
         font-size: 1.8em;
         font-weight: bold;
@@ -87,10 +68,32 @@ class ProductItem extends HTMLElement {
         white-space: wrap;
         overflow: auto;
         text-overflow: unset;
-      }`;
+      }
+    </style>`;
+      
     
-    this.shadowRoot.appendChild(style);
-    this.shadowRoot.appendChild(listwr);
+    const listwr = document.createElement('li');
+    listwr.setAttribute('class', 'product');
+    
+    const imageAcc = document.createElement('img');
+    const pTitle = document.createElement('p');
+    const pPrice = document.createElement('p');
+    imageAcc.setAttribute('src', image);
+    imageAcc.setAttribute('alt', title);
+    imageAcc.setAttribute('width', 200);
+    pTitle.textContent = title;
+    pPrice.textContent = "$" + price;
+    pTitle.setAttribute('class', 'title');
+    pPrice.setAttribute('class', 'price');
+    listwr.appendChild(imageAcc);
+    listwr.appendChild(pTitle);
+    listwr.appendChild(pPrice);
+    
+    const button = document.createElement('button');
+    button.textContent = 'Add to Cart';
+    listwr.appendChild(button);
+    
+    this.root.append(listwr);
   }
 }
 
