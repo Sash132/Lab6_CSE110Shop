@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   
   productsJSON = JSON.parse(localStorage.getItem('products'));
-  productsList = document.getElementByID('product-list');
+  productsList = document.getElementById('product-list');
   
   for(var prod in productsJSON) {
     currProduct = new ProductItem(productsJSON[prod].image, productsJSON[prod].title, productsJSON[prod].price);
