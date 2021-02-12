@@ -25,6 +25,7 @@ class ProductItem extends HTMLElement {
     
     //creates button and sets it to correct phrase
     const button = document.createElement('button');
+    button.setAttribute('onclick', "alert('Added to Cart!')");
     button.textContent = 'Add to Cart';
     if(checked) {
       button.textContent = 'Remove from Cart';
