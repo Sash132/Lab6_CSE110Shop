@@ -19,7 +19,7 @@ class ProductItem extends HTMLElement {
     listwr.appendChild(pTitle);
     listwr.appendChild(pPrice);
     
-    const button = document.createElement('button'));
+    const button = document.createElement('button');
     button.textContent = 'Add to Cart';
     listwr.appendChild(button);
     
