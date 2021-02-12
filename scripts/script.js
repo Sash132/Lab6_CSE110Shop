@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   
   //fetches all data from an external website and stores it locally
-  if(localStorage.getItem('products') === null) {
+  if(localStorage.getItem('products') == null) {
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
       .then(data => localStorage.setItem('products', JSON.stringify(data)));
